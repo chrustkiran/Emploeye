@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="56dp"
+        android:weightSum="5">
+
+        <!--  <TextView
+              android:id="@+id/textView"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="2"
+              android:fontFamily="sans-serif-smallcaps"
+              android:gravity="center"
+              android:text="E m p l o E y e"
+              android:textSize="24sp"
+              android:textStyle="bold" />-->
+
+        <!-- Email Label -->
+
+      <!--  <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/ic_logo" />-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/password_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="email"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/repassword_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="password"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/email_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="re-enter password"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1"></android.support.design.widget.TextInputLayout>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Full name"
+                android:inputType="text"
+                android:textSize="12sp" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/comapny"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Company name"
+                android:inputType="text"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/btn_verify"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/verify" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+</RelativeLayout>
