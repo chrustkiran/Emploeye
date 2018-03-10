@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:paddingTop="56dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
         android:weightSum="5">
 
         <!--  <TextView
@@ -29,11 +29,30 @@
 
         <!-- Email Label -->
 
-      <!--  <ImageView
+        <!--  <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:srcCompat="@drawable/ic_logo" />-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/email_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,10 +67,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:hint="email"
+                android:hint="Password"
                 android:inputType="textEmailAddress"
                 android:textSize="12sp" />
         </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -65,28 +85,8 @@
                 android:id="@+id/repassword_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:hint="password"
-                android:inputType="textEmailAddress"
-                android:textSize="12sp" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:weightSum="1">
-
-            <EditText
-                android:id="@+id/email_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="re-enter password"
+                android:hint="Re-enter password"
                 android:inputType="textEmailAddress"
                 android:textSize="12sp" />
 
@@ -100,17 +100,20 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:weightSum="1"></android.support.design.widget.TextInputLayout>
+            android:weightSum="1">
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Full name"
                 android:inputType="text"
                 android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,18 +126,58 @@
                 android:id="@+id/comapny"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Company name"
+                android:inputType="text"
+                android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Address"
+                android:inputType="text"
+                android:textSize="12sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/nic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="NIC number"
                 android:inputType="text"
                 android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/btn_verify"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/verify" />
+                app:srcCompat="@drawable/ic_create" />
 
         </android.support.design.widget.TextInputLayout>
 
