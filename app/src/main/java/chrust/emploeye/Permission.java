@@ -9,12 +9,22 @@ public class Permission {
     String body;
     String photo;
     String date;
+    String state;
 
-    public Permission(String subject, String body, String photo,String date) {
+    public Permission(String subject, String body, String photo,String date, String state) {
         this.subject = subject;
         this.body = body;
         this.photo = photo;
         this.date = date;
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getDate() {

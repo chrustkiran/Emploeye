@@ -10,6 +10,18 @@
         android:layout_height="25dp"
         app:srcCompat="@drawable/ic_logoo" />
 
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/chat_btn"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:text="logout"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/set_btn"
         android:layout_width="20dp"
@@ -23,11 +35,11 @@
         android:id="@+id/chat_btn"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_toLeftOf="@+id/perm_btn"
-        android:layout_toStartOf="@+id/perm_btn"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/set_btn"
+        android:layout_toRightOf="@+id/set_btn"
         app:srcCompat="@drawable/ic_message" />
 
     <ImageView
@@ -37,6 +49,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="67dp"
+        android:layout_marginRight="67dp"
         app:srcCompat="@drawable/ic_pernission" />
 
 </RelativeLayout>

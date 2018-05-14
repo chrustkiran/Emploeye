@@ -11,16 +11,18 @@ public class Task {
     String lng;
     String start_time;
     String end_time;
+    String state;
 
     public Task(){}
 
-    public Task(String date, String name, String lat, String lng, String start_time, String end_time) {
+    public Task(String date, String name, String lat, String lng, String start_time, String end_time,String state) {
         this.date = date;
         this.name = name;
         this.lat = lat;
         this.lng = lng;
         this.start_time = start_time;
         this.end_time = end_time;
+        this.state = state;
     }
 
     public String getDate() {
@@ -45,5 +47,9 @@ public class Task {
 
     public String getEnd_time() {
         return end_time;
+    }
+
+    public String getState() {
+        return state;
     }
 }

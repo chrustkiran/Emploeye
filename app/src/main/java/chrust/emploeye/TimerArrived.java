@@ -1,39 +1,23 @@
 package chrust.emploeye;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Message;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
+import static com.google.android.gms.internal.zzail.runOnUiThread;
 
-public class ArrivedActivity extends AppCompatActivity {
+/**
+ * Created by Chrustkiran on 12/05/2018.
+ */
 
-    public   TextView timer;
-    java.util.Date noteTS;
-    private ImageView gallery;
+public class TimerArrived {
+
+    public TextView timer;
     private Handler handler = new Handler();
     int time = 0;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_arrived);
 
-        timer = (TextView)findViewById(R.id.timer);
-        gallery = (ImageView)findViewById(R.id.gallery);
-
+    public TimerArrived(TextView timer){
+        this.timer = timer;
         Thread t = new Thread() {
 
             @Override
@@ -44,7 +28,7 @@ public class ArrivedActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                               // time++;
+                                // time++;
                                 //timer.setText(time);
                                 updateTextView();
                             }
@@ -56,8 +40,11 @@ public class ArrivedActivity extends AppCompatActivity {
         };
 
         t.start();
-
     }
+    public int getTime(){
+        return time;
+    }
+
     @SuppressLint("ResourceType")
     private void updateTextView() {
         time++;
@@ -78,18 +65,4 @@ public class ArrivedActivity extends AppCompatActivity {
 
     }
 
-    private void uploadingPhoto(){
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivityForResult(intent, 0);
-    }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0 && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            gallery.setImageBitmap(imageBitmap);
-        }
-    }
-
-
-
-        }
+}

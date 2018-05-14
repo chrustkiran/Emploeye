@@ -1,7 +1,9 @@
 package chrust.emploeye;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -33,6 +35,11 @@ public class SignIn extends AppCompatActivity {
     private EditText input_email,input_password;
     String email,password;
     private FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
+
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Email = "emailKey";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +53,12 @@ public class SignIn extends AppCompatActivity {
         btn_login = (ImageView)findViewById(R.id.btn_login);
         link_sign_up = (TextView)findViewById(R.id.link_signup);
 
+
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
+        if(sharedPreferences.getBoolean("logged",false)){
+            goToMainActivity();
+        }
         btn_login.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -79,8 +92,12 @@ public class SignIn extends AppCompatActivity {
                                     Toast.makeText(SignIn.this,"Signing in failed!", Toast.LENGTH_LONG).show();
                                 }
                             } else {
-                                Intent intent = new Intent(SignIn.this, MainActivity.class);
-                                startActivity(intent);
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(Email,email);
+                                sharedPreferences.edit().putBoolean("logged",true).apply();
+                                editor.commit();
+                               goToMainActivity();
                                 //finish();
                             }
                         }
@@ -101,5 +118,18 @@ public class SignIn extends AppCompatActivity {
 
 
     }
+    void goToMainActivity(){
+        Intent intent = new Intent(SignIn.this, MainActivity.class);
+        startActivity(intent);
+    }
 
+    @Override
+    public void onBackPressed() {
+        SignIn.this.finish();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+        super.onBackPressed();
+    }
 }

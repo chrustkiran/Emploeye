@@ -1,6 +1,7 @@
 package chrust.emploeye;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -23,6 +24,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,7 +59,7 @@ DateFormat df;
         df = new SimpleDateFormat("dd/MM/yyyy");
         date = df.format(System.currentTimeMillis());
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Permissions").child("WW4iaZvlD4ZMsFgxUea34I97FiX2");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Permissions").child(mAuth.getCurrentUser().getUid());
         chooser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +75,7 @@ DateFormat df;
                 body = body_txt.getText().toString();
                 if(filePath == null){
 
-                    permission = new Permission(subject,body,photo,date); //if photo is null permission
+                    permission = new Permission(subject,body,photo,date,"unseen"); //if photo is null permission
                     databaseReference.push().setValue(permission);
                     Toast.makeText(AskingPermissionActivity.this,"Uploaded",Toast.LENGTH_SHORT).show();
                 }
@@ -120,7 +122,7 @@ DateFormat df;
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(AskingPermissionActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                            permission = new Permission(subject,body,taskSnapshot.getDownloadUrl().toString(),date);
+                            permission = new Permission(subject,body,taskSnapshot.getDownloadUrl().toString(),date,"unseen");
                             databaseReference.push().setValue(permission);
 
                         }
@@ -142,4 +144,6 @@ DateFormat df;
                     });
         }
     }
+
+
 }

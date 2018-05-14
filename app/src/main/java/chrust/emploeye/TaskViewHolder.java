@@ -10,7 +10,7 @@ import android.widget.TextView;
  */
 
 public class TaskViewHolder extends RecyclerView.ViewHolder {
-TextView name_task_txt,end_txt,start_txt,lng_txt,lat_txt,date_txt;
+TextView name_task_txt,end_txt,start_txt,lng_txt,lat_txt,date_txt,state_txt;
 ImageView image_map;
     public TaskViewHolder(View itemView) {
 
@@ -21,6 +21,7 @@ ImageView image_map;
         end_txt =(TextView)itemView.findViewById(R.id.end_time_txt);
         start_txt = (TextView)itemView.findViewById(R.id.start_time_txt);
         image_map = (ImageView)itemView.findViewById(R.id.image_map);
+        state_txt = (TextView)itemView.findViewById(R.id.state_text);
 
     }
 

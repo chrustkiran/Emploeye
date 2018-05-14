@@ -13,9 +13,9 @@
 
     <ImageView
         android:id="@+id/add_location"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_add_location" />
+        app:srcCompat="@mipmap/ic_add_loca" />
 </RelativeLayout>

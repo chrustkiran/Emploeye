@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,7 +54,9 @@ public class AddplaceActivity extends FragmentActivity implements OnMapReadyCall
     private String end_time;
     private String lat;
     private String lng;
-
+    private long startTimeLong;
+    private long endTimeLong;
+    public SimpleDateFormat sdf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class AddplaceActivity extends FragmentActivity implements OnMapReadyCall
         choose = (ImageView) findViewById(R.id.choose);
         mAuth = FirebaseAuth.getInstance();
 
+        sdf = new SimpleDateFormat("HH:mm");
 
     }
 
@@ -142,12 +146,24 @@ public class AddplaceActivity extends FragmentActivity implements OnMapReadyCall
         // setup a dialog window
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int id) {
                         DateFormat df = new  SimpleDateFormat("dd/MM/yyyy"); //to change the date format into string
-                        AddplaceActivity.this.task_date = df.format(new Date(calendarView.getDate())); //getting task's date
+                        Date today = new Date();
+                        Date selected = new Date(calendarView.getDate());
+
+                            AddplaceActivity.this.task_date = df.format(selected); //getting task's date
+                            try {
+                                showStartTimeDialog();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
 
 
-                        showStartTimeDialog();
+
+
+
+
                     }
                 })
                 .setNegativeButton("Cancel",
@@ -161,13 +177,15 @@ public class AddplaceActivity extends FragmentActivity implements OnMapReadyCall
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
-    protected void showStartTimeDialog(){
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    protected void showStartTimeDialog() throws ParseException {
         LayoutInflater layoutInflater = LayoutInflater.from(AddplaceActivity.this);
         View promptView = layoutInflater.inflate(R.layout.task_start_time, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddplaceActivity.this);
         alertDialogBuilder.setView(promptView);
 
         final TimePicker timePicker = (TimePicker) promptView.findViewById(R.id.start_timePicker);
+        startTimeLong = sdf.parse(timePicker.getHour()+":"+timePicker.getMinute()).getTime();
         // setup a dialog window
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -204,13 +222,25 @@ public class AddplaceActivity extends FragmentActivity implements OnMapReadyCall
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     public void onClick(DialogInterface dialog, int id) {
                         //have to check validation here!!
-                            AddplaceActivity.this.end_time = timePicker.getHour() + ":" + timePicker.getMinute();
+                        try {
+                            endTimeLong = sdf.parse(timePicker.getHour()+":"+timePicker.getMinute()).getTime();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        AddplaceActivity.this.end_time = timePicker.getHour() + ":" + timePicker.getMinute();
 
-                        if(task_name!=null && task_date !=null && start_time!=null && end_time !=null){
-                            Task task = new Task(task_date,task_name,Double.toString(mMap.getCameraPosition().target.latitude),
-                                    Double.toString(mMap.getCameraPosition().target.longitude),start_time,end_time);
-                            taskref.child(mAuth.getCurrentUser().getUid()).push().setValue(task);
-                            Toast.makeText(AddplaceActivity.this,"Task is added",Toast.LENGTH_SHORT).show();
+
+                        if(task_name!=null && task_date !=null && start_time!=null && end_time !=null ){
+                            if(new Date(endTimeLong).after(new Date(startTimeLong))) {
+                                Task task = new Task(task_date, task_name, Double.toString(mMap.getCameraPosition().target.latitude),
+                                        Double.toString(mMap.getCameraPosition().target.longitude), start_time, end_time, "active");
+                                taskref.child(mAuth.getCurrentUser().getUid()).push().setValue(task);
+                                Toast.makeText(AddplaceActivity.this, "Task is added", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(AddplaceActivity.this,"Task can't end before it gets started",Toast.LENGTH_SHORT).show();
+                                showEndTimeDialog();
+                            }
                         }
                     }
                 })
